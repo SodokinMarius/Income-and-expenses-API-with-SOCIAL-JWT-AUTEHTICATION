@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import permissions
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
-from expenses.models import Expenses
+from .models import Income
 
 from .permissions import IsOwner
 from .serializers import IncomeSerialier
@@ -10,7 +10,7 @@ from .serializers import IncomeSerialier
 
 class IncomeList(ListCreateAPIView):
     serializer_class=IncomeSerialier
-    queryset=Expenses.objects.all()
+    queryset=Income.objects.all()
     permission_classes=[permissions.IsAuthenticated]
     lookup_field='id'
     
@@ -23,7 +23,7 @@ class IncomeList(ListCreateAPIView):
 
 class IncomeDetail(RetrieveUpdateDestroyAPIView):
     serializer_class=IncomeSerialier
-    queryset=Expenses.objects.all()
+    queryset=Income.objects.all()
     permission_classes=[permissions.IsAuthenticated,IsOwner]
     
     def get_queryset(self):
