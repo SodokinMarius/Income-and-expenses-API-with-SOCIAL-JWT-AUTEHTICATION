@@ -21,11 +21,14 @@ import  jwt #<---- for decoding
 from django.conf import settings 
 
 #Import serializer class
-from .serializers import EmailVerificationSerializer
+from .serializers import EmailVerificationSerializer,LoginSerializer
 
 #swagger import
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+
+#import for token obtain views
+from rest_framework_simplejwt.views import  TokenObtainPairView
 
 class RegisterView(generics.GenericAPIView):
 
@@ -65,7 +68,7 @@ class VerifyEmail(views.APIView):
     serializer_class=EmailVerificationSerializer
     
     token_parameter_config=openapi.Parameter(
-        'token',in_=openapi.IN_QUERY,description='Email  verifification view',type=openapi.TYPE_STRING
+        'token',in_=openapi.IN_QUERY,description='Email verifification view',type=openapi.TYPE_STRING
         )   
      
     @swagger_auto_schema(manual_parameters=[token_parameter_config])   
@@ -87,4 +90,17 @@ class VerifyEmail(views.APIView):
 
             
 
-         
+class LoginAPIView(generics.GenericAPIView):
+     serializer_class=LoginSerializer
+     
+     def post(self,request):
+         serializer=self.get_serializer(data=request.data)
+         serializer.is_valid(raise_exception=True)
+         response ={
+             "message":"User connected successfully !!",
+             "data":serializer.data
+         }
+         return Response(data=response,status=status.HTTP_200_OK)
+     
+     
+     
