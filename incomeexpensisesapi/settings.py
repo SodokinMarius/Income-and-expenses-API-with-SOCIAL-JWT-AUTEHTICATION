@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "authentication",
     "expenses",
+    "income",
     'drf_yasg',
 ]
 
