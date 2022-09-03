@@ -1,5 +1,5 @@
 import os
-
+import datetime
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -63,6 +63,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "incomeexpensisesapi.wsgi.application"
 
+
+#SWAGGER SETTINGS
+
+SWAGGER_SETTINGS={
+    'SECURITY_DEFINITIONS':{
+        'Bearer':{
+            'type':'apiKey',
+            'name':'Authorization',
+            'in':'header'
+        }
+    }
+}
+
+
+#JWT configuration
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -132,10 +152,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS=True
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
-EMAIL_HOST_USER= os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
-#EMAIL_HOST_USER='yaomariussodokin@gmail.com'
-#EMAIL_HOST_PASSWORD='tcnjehgdgahxuesf'
+#EMAIL_HOST_USER= os.environ.get('EMAIL_HOST_USER')
+#EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER='yaomariussodokin@gmail.com'
+EMAIL_HOST_PASSWORD='tcnjehgdgahxuesf'
 
 #DEBUG = int(os.environ.get("DEBUG", default=0))
 #ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
@@ -146,6 +166,6 @@ EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
 
 
 DEBUG=1
-SECRET_KEY="foo"
+#SECRET_KEY="foo"
 DJANGO_ALLOWED_HOSTS=["localhost", "127.0.0.1"]
 
