@@ -136,3 +136,16 @@ EMAIL_HOST_USER= os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
 #EMAIL_HOST_USER='yaomariussodokin@gmail.com'
 #EMAIL_HOST_PASSWORD='tcnjehgdgahxuesf'
+
+#DEBUG = int(os.environ.get("DEBUG", default=0))
+#ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
+#ALLOWED_HOSTS = ('localhost','127.0.0.1') #<--------- definis sans variable environnment
+
+#os.environ.setdefault("DJANGO_SETTINGS_MODULE", ".settings.local")
+
+
+
+DEBUG=1
+SECRET_KEY="foo"
+DJANGO_ALLOWED_HOSTS=["localhost", "127.0.0.1"]
+

@@ -1,0 +1,29 @@
+  
+version: '3.3'
+services:
+  incomeexpensisesapi:
+    build: .    #soit lui indiquer le chemin du projet
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/usr/src/incomeexpensisesapi/  #./scheminApp avant les 2 points  si docker-compose n'est pas dans le même dossier
+    ports:
+      - 8009:8000
+    #env_file:
+     # - ./.env.dev   #renseigner le chemin du .env.dev
+     
+    #Adding new services for postgres configuration
+#depends_on:
+     # - incomeexpensisesapi-db
+#restaurant-db:   #<--- nom du service
+   # image: postgres:14-alpine
+
+    #volumes:
+     # - postgres_data:/var/lib/postgresql/data/
+    #environment:
+      #- POSTGRES_USER=incomeexpensisesapi
+      #- POSTGRES_PASSWORD=incomeexpensisesapi-db
+      #- POSTGRES_DB=incomeexpensisesapi-db_dev
+#volumes:
+ # postgres_data:
+
+ 
