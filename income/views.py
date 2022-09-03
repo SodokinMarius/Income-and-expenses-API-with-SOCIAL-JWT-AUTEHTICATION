@@ -8,10 +8,15 @@ from .permissions import IsOwner
 from .serializers import IncomeSerialier
 
 
+from authentication.renderers import UserRenderer
+
 class IncomeList(ListCreateAPIView):
     serializer_class=IncomeSerialier
     queryset=Income.objects.all()
     permission_classes=[permissions.IsAuthenticated]
+    
+    renderer_classes=[UserRenderer]
+    
     lookup_field='id'
     
     def perform_create(self, serializer):

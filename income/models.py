@@ -17,3 +17,9 @@ class Income(models.Model):
     description=models.TextField(max_length=200)
     owner=models.ForeignKey(to=User,related_name='owner_income',on_delete=models.CASCADE)
     creation_date=models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+            ordering=['-creation_date']
+    
+    def __str__(self):
+        return '{} | {} | {}'.format(self.source,self.amount,self.owner)

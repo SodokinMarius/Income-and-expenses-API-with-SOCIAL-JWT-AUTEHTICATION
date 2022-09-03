@@ -30,9 +30,14 @@ from drf_yasg import openapi
 #import for token obtain views
 from rest_framework_simplejwt.views import  TokenObtainPairView
 
+#import the renderer
+from .renderers import UserRenderer
+
 class RegisterView(generics.GenericAPIView):
 
     serializer_class=RegisterSerializer
+    
+    renderer_classes=(UserRenderer,)
 
     def post(self,request):
         user=request.data 
@@ -66,6 +71,7 @@ class RegisterView(generics.GenericAPIView):
 
 class VerifyEmail(views.APIView):
     serializer_class=EmailVerificationSerializer
+    
     
     token_parameter_config=openapi.Parameter(
         'token',in_=openapi.IN_QUERY,description='Email verifification view',type=openapi.TYPE_STRING

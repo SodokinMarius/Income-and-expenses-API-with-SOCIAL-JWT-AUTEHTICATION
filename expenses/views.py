@@ -7,12 +7,14 @@ from expenses.models import Expenses
 from .permissions import IsOwner
 from .serializers import ExpenseSerialier
 
+from authentication.renderers import UserRenderer
 
 class ExpenseList(ListCreateAPIView):
     serializer_class=ExpenseSerialier
     queryset=Expenses.objects.all()
     permission_classes=[permissions.IsAuthenticated]
     lookup_field='id'
+    renderer_classes=[UserRenderer]
     
     def perform_create(self, serializer):
         return serializer.save(owner=self.request.user)
