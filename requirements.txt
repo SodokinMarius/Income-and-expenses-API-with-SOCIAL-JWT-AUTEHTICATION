@@ -7,3 +7,5 @@ django-rest-authtoken==2.1.4
 Django==4.0.4
 
 drf-yasg==1.21.3
+
+faker==14.2.0
