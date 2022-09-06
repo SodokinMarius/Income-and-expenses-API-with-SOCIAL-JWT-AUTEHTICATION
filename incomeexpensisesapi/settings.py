@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "expenses",
     "corsheaders",
     "income",
+    'userpoints',
     'drf_yasg',
 ]
 

@@ -1,4 +1,5 @@
 import email
+from string import ascii_letters
 from rest_framework import  serializers
 
 from .models import User 
@@ -46,7 +47,20 @@ class LoginSerializer(serializers.ModelSerializer):
     email=serializers.EmailField(max_length=255)
     password=serializers.CharField(max_length=255)
     username=serializers.CharField(max_length=255,read_only=True)
-    tokens=serializers.CharField(max_length=255,read_only=True)
+    #tokens=serializers.CharField(max_length=255,read_only=True)
+    tokens=serializers.SerializerMethodField()
+    
+    
+    #Fonction pour recuperer le token dans le variablee de serialization
+    
+    def get_tokens(self,obj):
+        user=User.objects.get(email=obj['email'])
+        
+        return {
+            "access":user.tokens['access'],
+            "refresh":user.tokens['refresh']
+        }
+        
     
     class Meta:
         model=User 
