@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "authentication",
     "expenses",
+    "corsheaders",
     "income",
     'drf_yasg',
 ]
@@ -38,6 +39,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -171,8 +173,18 @@ EMAIL_HOST_PASSWORD='tcnjehgdgahxuesf'
 #os.environ.setdefault("DJANGO_SETTINGS_MODULE", ".settings.local")
 
 
-
 DEBUG=1
 #SECRET_KEY="foo"
 DJANGO_ALLOWED_HOSTS=["localhost", "127.0.0.1"]
 
+
+
+#Configurer les servers ou les adresses qui pourtont se connecter à notre server (site)
+'''CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000",
+]'''
+
+CORS_ORIGIN_ALLOW_ALL=True  #<----- Ceci pour permettre à tout le monde de se connecter à notre serveur
