@@ -27,5 +27,5 @@ def encode(token,key,algorithm=['HS256']):
     except jwt.InvalidTokenError:
         raise jwt.exceptions ("Token Invalid  !!")
      
-        
-            
+
+

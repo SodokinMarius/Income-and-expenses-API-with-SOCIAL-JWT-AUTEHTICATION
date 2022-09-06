@@ -32,14 +32,13 @@ class UserManager(BaseUserManager):
         return user
 
 class User(AbstractBaseUser,PermissionsMixin):
-    username=models.CharField(max_length=255,unique=True,db_index=True)
+    username=models.CharField(max_length=255,db_index=True)
     email=models.EmailField(max_length=255,unique=True,db_index=True)
     is_verified=models.BooleanField(default=False)
     is_active=models.BooleanField(default=True)
     is_staff=models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now_add=True)
-    tokens=models.CharField(max_length=68)
     
 
     USERNAME_FIELD='email'
@@ -50,7 +49,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     def __str__(self):
         return self.email
     
-    def create_tokens(self): # Important de definir d'abord le las setting AUTH_USER_MODEL
+    def tokens(self): # Important de definir d'abord le las setting AUTH_USER_MODEL
         token=RefreshToken.for_user(self)
         
         return {
